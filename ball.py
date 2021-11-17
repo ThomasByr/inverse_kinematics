@@ -59,7 +59,7 @@ class Ball:
 
     def show(self) -> None:
         """
-        calls draw methods from Engine
+        calls draw methods from Renderer
         """
         self._renderer.fill = 100, 255, 0
         self._renderer.no_stroke()

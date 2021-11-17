@@ -68,7 +68,7 @@ class Segment:
 
     def show(self) -> None:
         """
-        calls draw methods from Engine
+        calls draw methods from Renderer
         """
         self._renderer.stroke = 255
         self._renderer.no_fill()
