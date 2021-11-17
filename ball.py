@@ -1,7 +1,4 @@
-from math import pi
-
-from engine import Engine
-from vector import Vector
+from phoenyx import *
 
 
 def _constrain(value: float, low: float = None, hight: float = None) -> float:
@@ -16,7 +13,7 @@ class Ball:
     """
     Ball
     ====
-    based on the ``Engine`` renderer in python and ``Vector`` class
+    based on the ``Renderer`` renderer in python and ``Vector`` class
 
     Ball has:
      * a ``position``
@@ -27,14 +24,15 @@ class Ball:
     RADIUS = 7
     VELOCITY = 4
 
-    def __init__(self, renderer: Engine, x: float, y: float, win: tuple) -> None:
+    def __init__(self, renderer: Renderer, x: float, y: float,
+                 win: tuple) -> None:
         """
         new Ball instance
 
         Parameters
         ----------
-            renderer : Engine
-                main Engine
+            renderer : Renderer
+                main Renderer
             x : float
                 ball position along the x-axis
             y : float
@@ -46,7 +44,7 @@ class Ball:
         self.win = win
 
         self.vel = Vector.random2d(mag=self.VELOCITY)
-        self.vel.heading = _constrain(self.vel.heading, -pi / 8, pi / 8)
+        self.vel.heading = _constrain(self.vel.heading, -PI / 8, PI / 8)
 
         self._renderer = renderer
 
@@ -56,7 +54,7 @@ class Ball:
         """
         self._renderer.fill = 100, 255, 0
         self._renderer.no_stroke()
-        self._renderer.circle(self.pos.rounded(), self.RADIUS)
+        self._renderer.circle(self.pos, self.RADIUS)
 
     def update(self) -> None:
         """

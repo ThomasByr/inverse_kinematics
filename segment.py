@@ -1,14 +1,13 @@
-from math import cos, sin
+from phoenyx import *
 
-from engine import Engine
-from vector import Vector
+from math import cos, sin
 
 
 class Segment:
     """
     Segment
     =======
-    based on the ``Engine`` renderer in python and ``Vector`` class
+    based on the ``Renderer`` renderer in python and ``Vector`` class
 
     Segment has:
      * point ``a`` used as a reference
@@ -18,7 +17,7 @@ class Segment:
      * point ``b`` calculated from data above
     """
     def __init__(self,
-                 renderer: Engine,
+                 renderer: Renderer,
                  x: float,
                  y: float,
                  length: float,
@@ -29,8 +28,8 @@ class Segment:
 
         Parameters
         ----------
-            renderer : Engine
-                main Engine
+            renderer : Renderer
+                main Renderer
             x : float
                 position along the x-axis
             y : float
@@ -74,7 +73,7 @@ class Segment:
         self._renderer.stroke = 255
         self._renderer.no_fill()
         self._renderer.stroke_weight = round(self.weight)
-        self._renderer.line(self.a.rounded(), self.b.rounded())
+        self._renderer.aaline(self.a, self.b)
 
     def follow(self, target: Vector) -> None:
         """

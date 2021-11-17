@@ -1,6 +1,6 @@
-from engine import Engine
+from phoenyx import *
+
 from segment import Segment
-from vector import Vector
 
 
 def _map(x: float, x0: float, x1: float, y0: float, y1: float) -> float:
@@ -14,7 +14,7 @@ class Tentacle:
     """
     Tentacle
     ========
-    based on the ``Engine`` renderer in python and ``Vector`` class\\
+    based on the ``Renderer`` renderer in python and ``Vector`` class\\
     uses ``Segment``
 
     Tencacle has:
@@ -23,7 +23,7 @@ class Tentacle:
      * a ``base``
     """
     def __init__(self,
-                 renderer: Engine,
+                 renderer: Renderer,
                  win: tuple,
                  size: int,
                  seg_length: float = None,
@@ -33,8 +33,8 @@ class Tentacle:
 
         Parameters
         ----------
-            renderer : Engine
-                main Engine
+            renderer : Renderer
+                main Renderer
             win : tuple
                 size of windows
             size : int

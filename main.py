@@ -1,35 +1,35 @@
-from math import cos, pi, sin
+from math import cos, sin
 
 from numpy import arange
+from phoenyx import *
 
 from ball import Ball
-from engine import Engine
 from tentacle import Tentacle
-from vector import Vector
 
 WIDTH, HEIGHT = 500, 400
 N = 2
 SIZE = 3
 LENGTH = 50
 
-renderer = Engine(WIDTH, HEIGHT, title="Inverse Kinematics")
+renderer: Renderer = Renderer(WIDTH, HEIGHT, title="Inverse Kinematics")
 renderer.fps = 60
 
-tentacles = []
-ball: Ball
+tentacles: list[Tentacle] = []
+ball: Ball = None
 
 
 def setup() -> None:
-    """
-    setup function for ``Engine`` class
-    """
     global tentacles, ball
-    da = 2 * pi / N
+    da = 2 * PI / N
 
-    for a in arange(0, 2 * pi, step=da, dtype=float):
-        x = WIDTH / 2 + HEIGHT / 2 * cos(a)
+    for a in arange(0, 2 * PI, step=da, dtype=float):
+        x = WIDTH/2 + HEIGHT / 2 * cos(a)
         y = HEIGHT / 2 * (1 + sin(a))
-        tentacles.append(Tentacle(renderer, (WIDTH, HEIGHT), SIZE, seg_length=LENGTH, base=Vector(x, y)))
+        tentacles.append(
+            Tentacle(renderer, (WIDTH, HEIGHT),
+                     SIZE,
+                     seg_length=LENGTH,
+                     base=Vector(x, y)))
 
     ball = Ball(renderer, 100, 100, (WIDTH, HEIGHT))
 
@@ -38,9 +38,6 @@ def setup() -> None:
 
 
 def draw() -> None:
-    """
-    draw function for ``Engine`` class
-    """
     global tentacles, ball
     renderer.background(51)
 
@@ -56,4 +53,4 @@ def draw() -> None:
 
 
 if __name__ == "__main__":
-    renderer.run(draw, setup=setup)
+    renderer.run()
