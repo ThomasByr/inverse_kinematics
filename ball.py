@@ -41,12 +41,21 @@ class Ball:
                 size of the windows
         """
         self.pos = Vector(x, y)
+        self.opos = self.pos.copy()
         self.win = win
 
         self.vel = Vector.random2d(mag=self.VELOCITY)
         self.vel.heading = _constrain(self.vel.heading, -PI / 8, PI / 8)
 
         self._renderer = renderer
+
+    def reset(self) -> None:
+        """
+        resets the Ball to its original position
+        """
+        self.pos = self.opos.copy()
+        self.vel = Vector.random2d(mag=self.VELOCITY)
+        self.vel.heading = _constrain(self.vel.heading, -PI / 8, PI / 8)
 
     def show(self) -> None:
         """

@@ -18,6 +18,10 @@ tentacles: list[Tentacle] = []
 ball: Ball = None
 
 
+def reset_ball() -> None:
+    ball.reset()
+
+
 def setup() -> None:
     global tentacles, ball
     da = 2 * PI / N
@@ -32,6 +36,12 @@ def setup() -> None:
                      base=Vector(x, y)))
 
     ball = Ball(renderer, 100, 100, (WIDTH, HEIGHT))
+
+    options = {
+        "text_size": 9,
+        "background": None,
+    }
+    renderer.create_menu("options", reset_ball=reset_ball, **options)
 
     renderer.text_size = 15
     renderer.text_color = 255
